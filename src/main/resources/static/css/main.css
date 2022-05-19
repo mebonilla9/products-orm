@@ -1,0 +1,19 @@
+body {
+  padding-top: 20px;
+  background-color: #696969;
+  color: #FFF5EE;
+}
+
+.page-wrap {
+  min-height: 100vh;
+}
+
+.btn-top-border {
+  padding-top: 10px;
+}
+
+.section-wrapper {
+  border: #FFF5EE solid 3px;
+  border-radius: 15px;
+  padding: 20px;
+}

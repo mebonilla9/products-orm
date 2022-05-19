@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres-products-orm:
+    container_name: postgres-products-orm
+    image: postgres
+    environment:
+      POSTGRES_USER: dbproductsorm
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: productsorm
+      PGDATA: /data/postgres
+    volumes:
+      - postgres-products-orm:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres-products-orm:
