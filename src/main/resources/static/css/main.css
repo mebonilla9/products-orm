@@ -17,3 +17,12 @@ body {
   border-radius: 15px;
   padding: 20px;
 }
+
+.section-no-border{
+  padding: 20px;
+}
+
+.product-img{
+  width: 250px;
+  height: 200px;
+}

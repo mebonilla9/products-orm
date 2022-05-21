@@ -14,29 +14,39 @@
   <h1>Products Management</h1>
   <div class="section-wrapper">
     <div class="row">
-      <h3>Product info Info</h3>
+      <h3>Product info</h3>
     </div>
     <div class="row">
       <form action="#" th:action="@{/save}" th:object="${product}" method="post">
         <div class="form-group col-xl-4 offset-xl-4 col-md-6 offset-md-3">
-          <label for="txtIdrd" class="form-label">Id</label>
-          <input type="text" id="txtIdrd" class="form-control" th:field="*{id}" name="idrd" disabled>
+          <label for="txtIdRd" class="form-label">Id</label>
+          <input type="text" id="txtIdRd" class="form-control" th:field="*{id}" name="idrd" disabled>
         </div>
         <div class="form-group col-xl-4 offset-xl-4 col-md-6 offset-md-3">
           <label for="txtName" class="form-label">Name</label>
-          <input type="text" id="txtName" class="form-control" th:field="*{name}" name="name">
+          <input type="text" id="txtName" class="form-control" th:field="*{name}" name="name" required>
         </div>
         <div class="form-group col-xl-4 offset-xl-4 col-md-6 offset-md-3">
-          <label for="txtName" class="form-label">Name</label>
-          <input type="text" id="txtName" class="form-control" th:field="*{name}" name="name">
+          <label for="txtDescription" class="form-label">Description</label>
+          <textarea name="description" id="txtDescription" class="form-control" th:field="*{description}" required>
+          </textarea>
         </div>
-        <input type="hidden" th:field="*{enable}" name="id">
-        <input type="hidden" th:field="*{id}" name="enable">
+        <div class="form-group col-xl-4 offset-xl-4 col-md-6 offset-md-3">
+          <label for="txtImage" class="form-label">Url Image</label>
+          <input type="text" id="txtImage" class="form-control" th:field="*{image}" name="image" required>
+        </div>
+        <div class="form-group col-xl-4 offset-xl-4 col-md-6 offset-md-3">
+          <label for="txtPrice" class="form-label">Price</label>
+          <input type="number" id="txtPrice" class="form-control" th:field="*{price}" name="price" required>
+        </div>
+        <input type="hidden" th:field="*{enable}" name="enable">
+        <input type="hidden" th:field="*{id}" name="id">
         <div class="form-group col-xl-4 offset-xl-4 col-md-6 offset-md-3">
           <div class="d-grid gap-2 d-md-block btn-top-border">
-            <button class="btn btn-success" type="submit" th:if="${provider.id == null}">Save</button>
-            <button class="btn btn-primary" type="submit" th:if="${provider.id != null}">Edit</button>
-            <a th:href="@{/}" class="btn btn-warning">Restart</a>
+            <button class="btn btn-success" type="submit" th:if="${product.id == null}">Save</button>
+            <button class="btn btn-primary" type="submit" th:if="${product.id != null}">Edit</button>
+            <a th:href="@{/create}" class="btn btn-warning">Restart</a>
+            <a th:href="@{/}" class="btn btn-danger">Cancel</a>
           </div>
         </div>
       </form>

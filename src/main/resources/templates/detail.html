@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WareHouse home page</title>
+  <link media="all" th:href="@{/css/bootstrap.css}" rel="stylesheet">
+  <link media="all" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container page-wrap">
+  <h1>Products Management</h1>
+  <div class="section-wrapper">
+    <div class="row">
+      <h3>Product info</h3>
+    </div>
+    <div class="row">
+      <img class="product-img" th:src="${product.image}" alt="Product Image">
+    </div>
+    <div class="row">
+      <h3 th:inline="text">
+        [[${product.name}]]
+      </h3>
+    </div>
+    <div class="row">
+      <p th:inline="text">
+        [[${product.description}]]
+      </p>
+    </div>
+    <div class="row">
+      <p th:inline="text">
+        [[${product.price}]]
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-1">
+        <a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-primary">Edit</a>
+      </div>
+      <div class="col-1">
+        <a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a>
+      </div>
+      <div class="col-1">
+        <a th:href="@{/}" class="btn btn-success">Return</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

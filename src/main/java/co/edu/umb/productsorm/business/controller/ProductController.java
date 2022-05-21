@@ -12,6 +12,7 @@ public record ProductController(ProductService productService) {
   @RequestMapping("/")
   public String index(Model model) {
     model.addAttribute("products", productService.getProducts());
+    model.addAttribute("message", "");
     return "index";
   }
 
@@ -19,26 +20,48 @@ public record ProductController(ProductService productService) {
   public String save(Product product, Model model) {
     StringBuilder message = new StringBuilder();
     message.append("Product edited");
-    if (product.getId() != null) {
+    if (product.getId() == null) {
       productService.create(product);
       message.delete(0, message.length())
         .append("Product created");
     }
     productService.edit(product);
     model.addAttribute("message", message.toString());
-    return "redirect:/";
+    model.addAttribute("products", productService.getProducts());
+    return "index";
+  }
+
+  @GetMapping("/create")
+  public String register(Model model){
+    model.addAttribute("product", new Product());
+    return "register";
   }
 
   @GetMapping("/edit/{id}")
   public String edit(@PathVariable("id") Integer id, Model model){
     model.addAttribute("product", productService.findById(id));
-    return "redirect:/edit";
+    return "register";
+  }
+
+  @GetMapping("/detail/{id}")
+  public String detail(@PathVariable("id") Integer id, Model model){
+    model.addAttribute("product", productService.findById(id));
+    return "detail";
   }
 
   @GetMapping("/delete/{id}")
   public String delete(@PathVariable("id") Integer id, Model model){
     model.addAttribute("product", productService.findById(id));
-    return "redirect:/confirm";
+    return "confirm";
+  }
+
+  @GetMapping("/confirm/{id}")
+  public String confirmDelete(@PathVariable("id") Integer id, Model model){
+    Product product = productService.findById(id);
+    productService.delete(product);
+    model.addAttribute("products", productService.getProducts());
+    model.addAttribute("message", "The product was deleted");
+    return "index";
   }
 
 }
